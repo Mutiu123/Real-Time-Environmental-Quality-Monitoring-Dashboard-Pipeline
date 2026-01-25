@@ -1,6 +1,6 @@
 # Real-Time Environmental Air Quality Monitoring Dashboard
 
-A comprehensive data pipeline and interactive dashboard for monitoring air quality across multiple locations in South Africa. This project extracts data from OpenAQ, processes it, and visualizes trends through an interactive web dashboard.
+A detail data pipeline and interactive dashboard for monitoring air quality across multiple locations in South Africa. This project extracts data from OpenAQ, processes it, and visualizes trends through an interactive web dashboard.
 
 ![Python](https://img.shields.io/badge/Python-3.8%2B-blue)
 ![DuckDB](https://img.shields.io/badge/DuckDB-Latest-orange)
