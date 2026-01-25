@@ -9,38 +9,45 @@ app = dash.Dash(__name__)
 
 
 app.layout = html.Div([
-      html.H1("Real-time Environmental Air Quality Monitoring Dashboard", style={"textAlign": "center"}),
+      html.H1(
+            "Real-time Environmental Air Quality Monitoring Dashboard",
+            style={"textAlign": "center", "marginBottom": "10px", "fontSize": "24px"}
+      ),
       dcc.Tabs([
             dcc.Tab(
                   label="Sensor Locations",
-                  children=[dcc.Graph(id="map-view")]
+                  children=[dcc.Graph(id="map-view", style={"height": "85vh"})]
             ),
             dcc.Tab(
                   label="Parameter Plots",
                   children=[
                         html.Div([
-                              html.Label("Select Parameter:", style={"fontWeight": "bold", "marginRight": "10px"}),
-                              dcc.Dropdown(
-                                    id="parameter-dropdown",
-                                    clearable=False,
-                                    multi=False,
-                                    searchable=True,
-                                    style={"width": "300px"}
-                              ),
-                        ], style={"display": "flex", "alignItems": "center", "marginBottom": "10px", "marginTop": "20px"}),
+                              html.Div([
+                                    html.Label("Select Parameter:", style={"fontWeight": "bold", "marginRight": "10px", "fontSize": "14px"}),
+                                    dcc.Dropdown(
+                                          id="parameter-dropdown",
+                                          clearable=False,
+                                          multi=False,
+                                          searchable=True,
+                                          style={"width": "200px"}
+                                    ),
+                              ], style={"display": "flex", "alignItems": "center", "marginRight": "20px"}),
+                              html.Div([
+                                    html.Label("Select Date Range:", style={"fontWeight": "bold", "marginRight": "10px", "fontSize": "14px"}),
+                                    dcc.DatePickerRange(
+                                          id="date-picker-range",
+                                          display_format="YYYY-MM-DD"
+                                    ),
+                              ], style={"display": "flex", "alignItems": "center"}),
+                        ], style={"display": "flex", "alignItems": "center", "marginBottom": "10px", "marginTop": "10px", "flexWrap": "wrap"}),
                         html.Div([
-                              html.Label("Select Date Range:", style={"fontWeight": "bold", "marginRight": "10px"}),
-                              dcc.DatePickerRange(
-                                    id="date-picker-range",
-                                    display_format="YYYY-MM-DD"
-                              ),
-                        ], style={"display": "flex", "alignItems": "center", "marginBottom": "20px"}),
-                        dcc.Graph(id="line-plot", style={"height": "500px"}),
-                        dcc.Graph(id="bar-plot", style={"height": "500px"})
+                              dcc.Graph(id="line-plot", style={"height": "38vh", "marginBottom": "5px"}),
+                              dcc.Graph(id="bar-plot", style={"height": "38vh"})
+                        ])
                   ]
             )
       ])
-], style={"padding": "20px"})
+], style={"padding": "10px", "height": "100vh", "boxSizing": "border-box"})
 
 @app.callback(
       Output("map-view", "figure"),
@@ -72,7 +79,7 @@ def update_map(_):
                 "pm25": True,
                 "so2": True
             },
-            zoom=5.5,
+            zoom=2.5,
             size_max=25,
             center={"lat": center_lat, "lon": center_lon}
       )
@@ -83,7 +90,6 @@ def update_map(_):
 
       map_fig.update_layout(
             mapbox_style="open-street-map",
-            height=800,
             title="Air Quality Monitoring Locations",
             margin={"r": 0, "t": 40, "l": 0, "b": 0}
       )
@@ -166,7 +172,16 @@ def update_plots(selected_parameter, start_date, end_date):
             xaxis_title="Date",
             yaxis_title=unit,
             legend_title="Location",
-            hovermode="x unified"
+            hovermode="x unified",
+            margin={"r": 20, "t": 50, "l": 60, "b": 40},
+            legend=dict(
+                  orientation="v",
+                  yanchor="top",
+                  y=0.99,
+                  xanchor="left",
+                  x=1.01,
+                  font=dict(size=10)
+            )
       )
 
       # Bar chart showing average values by location
@@ -186,7 +201,9 @@ def update_plots(selected_parameter, start_date, end_date):
             xaxis_title="Location",
             yaxis_title=f"Average {unit}",
             showlegend=False,
-            xaxis={'categoryorder': 'total descending'}
+            xaxis={'categoryorder': 'total descending'},
+            margin={"r": 20, "t": 50, "l": 60, "b": 80},
+            xaxis_tickangle=-45
       )
 
       return line_fig, bar_fig

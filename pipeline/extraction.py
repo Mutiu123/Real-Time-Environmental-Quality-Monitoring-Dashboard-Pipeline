@@ -1,5 +1,5 @@
 """
-Example usage: python extraction.py --locations_file_path ../locations.json --start_date 2024-01 --end_date 2025-06 --database_path ../air_quality.db --extract_query_template_path ../sql/dml/raw/0_raw_air_quality_insert.sql --source_base_path s3://openaq-data-archive/records/csv.gz
+Example usage: python extraction.py --locations_file_path ../locations.json --start_date 2024-01 --end_date 2025-01 --database_path ../air_quality.db --extract_query_template_path ../sql/dml/raw/0_raw_air_quality_insert.sql --source_base_path s3://openaq-data-archive/records/csv.gz
 """
 import argparse
 import json
@@ -57,8 +57,28 @@ def compile_data_file_query(
     return extract_query
 
 
+def delete_existing_data(con, start_date: str, end_date: str):
+    """Delete existing data for the specified date range before extracting new data."""
+
+    start_dt = datetime.strptime(start_date, "%Y-%m")
+    end_dt = datetime.strptime(end_date, "%Y-%m")
+
+    # Delete data for the entire date range
+    index_date = start_dt
+    while index_date <= end_dt:
+        delete_query = f"""
+        DELETE FROM raw.air_quality
+        WHERE year = {index_date.year} AND month = '{str(index_date.month).zfill(2)}';
+        """
+        logging.info(f"Deleting existing data for {index_date.year}-{str(index_date.month).zfill(2)}")
+        execute_query(con, delete_query)
+        index_date += relativedelta(months=1)
+
+    logging.info(f"Deleted all existing data from {start_date} to {end_date}")
+
+
 def extract_data(args):
-    
+
     location_ids = read_location_ids(args.locations_file_path)
 
     data_file_path_template = "locationid={{location_id}}/year={{year}}/month={{month}}/*"
@@ -73,6 +93,10 @@ def extract_data(args):
     extract_query_template = read_query(path=args.extract_query_template_path)
 
     con = connect_to_database(path=args.database_path)
+
+    # Delete existing data before extracting new data
+    logging.info("Deleting existing data for the specified date range...")
+    delete_existing_data(con, args.start_date, args.end_date)
 
     for data_file_path in data_file_paths:
         logging.info(f"Extracting data from {data_file_path}")
