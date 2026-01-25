@@ -8,7 +8,20 @@ env.bak/
 venv.bak/
 
 secrets.json
+
+# Database files
 *.db
+*.db-shm
+*.db-wal
+air_quality.db*
+
+# Project-specific
+data/
+output/
+logs/
+*.csv
+*.csv.gz
+.DS_Store
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

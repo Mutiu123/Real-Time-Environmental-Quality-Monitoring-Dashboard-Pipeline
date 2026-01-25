@@ -1,3 +1,14 @@
+# Core Dashboard Dependencies
+dash>=2.14.0
+plotly>=5.18.0
+pandas>=2.1.0
+duckdb>=0.9.0
+
+# Data Pipeline Dependencies
+jinja2>=3.1.2
+python-dateutil>=2.9.0
+
+# Jupyter Notebooks (Optional)
 anyio==4.12.0
 argon2-cffi==25.1.0
 argon2-cffi-bindings==25.1.0
