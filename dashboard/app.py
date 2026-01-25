@@ -7,7 +7,7 @@ import pandas as pd
 
 with duckdb.connect("../air_quality.db", read_only=True) as db_connection:
         df = db_connection.execute(
-            "SELECT * FROM presentation.air_quality_data"
+            "SELECT * FROM presentation.air_quality"
         ).fetchdf()
         daily_stats_df = db_connection.execute(
             "SELECT * FROM presentation.daily_air_quality_stats"

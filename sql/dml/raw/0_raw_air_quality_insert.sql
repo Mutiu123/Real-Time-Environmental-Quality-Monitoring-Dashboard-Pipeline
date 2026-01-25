@@ -1,4 +1,4 @@
-INSERT INTO raw.air_quality_data
+INSERT INTO raw.air_quality
 SELECT 
     location_id, 
     sensors_id, 

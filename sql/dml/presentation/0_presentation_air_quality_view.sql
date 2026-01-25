@@ -20,7 +20,6 @@ CREATE OR REPLACE VIEW presentation.air_quality AS (
         "parameter",
         units,
         "value",
-        locationid,
         "month",
         "year",
         ingestion_datetime
