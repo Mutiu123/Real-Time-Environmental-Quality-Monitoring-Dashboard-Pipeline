@@ -7,6 +7,20 @@ A comprehensive data pipeline and interactive dashboard for monitoring air quali
 ![Dash](https://img.shields.io/badge/Dash-Latest-green)
 ![License](https://img.shields.io/badge/License-MIT-yellow)
 
+## Screenshots
+
+### Sensor Locations Map
+![Sensor Locations Map](Image/Sensor%20locations.jpg)
+
+### Parameter Analysis - PM2.5
+![PM2.5 Analysis](Image/pm25.jpg)
+
+### Parameter Analysis - PM10
+![PM10 Analysis](Image/pm10.jpg)
+
+### Parameter Analysis - SO2
+![SO2 Analysis](Image/so2.jpg)
+
 ## Features
 
 - **Automated Data Extraction**: Pull air quality data from OpenAQ S3 buckets
@@ -227,23 +241,37 @@ Access the dashboard at: `http://127.0.0.1:8050`
 
 ### 1. Sensor Locations Map
 
-- Interactive map showing all monitoring stations
+![Sensor Locations](Image/Sensor%20locations.jpg)
+
+- Interactive map showing all monitoring stations across South Africa
 - Auto-centered on sensor locations
 - Hover to see latest readings (PM10, PM2.5, SO2)
-- Large, visible markers for easy identification
+- Large, visible red markers for easy identification
+- OpenStreetMap base layer for geographic context
 
 ### 2. Parameter Plots
 
+#### PM2.5 Analysis
+![PM2.5 Trends](Image/pm25.jpg)
+
+#### PM10 Analysis
+![PM10 Trends](Image/pm10.jpg)
+
+#### SO2 Analysis
+![SO2 Trends](Image/so2.jpg)
+
+**Features:**
 - **Line Chart**: Time series comparison across all locations
   - Select parameter (PM2.5, PM10, SO2, etc.)
-  - Choose date range
-  - Color-coded by location
-  - Unified hover mode for easy comparison
+  - Choose date range with date picker
+  - Color-coded by location for easy comparison
+  - Unified hover mode to compare values across locations
 
 - **Bar Chart**: Average values by location
   - Compare pollution levels across cities
-  - Sorted by highest to lowest
-  - Identify pollution hotspots
+  - Sorted by highest to lowest concentration
+  - Identify pollution hotspots at a glance
+  - Color-coded for visual distinction
 
 ### 3. Incremental Loading
 
