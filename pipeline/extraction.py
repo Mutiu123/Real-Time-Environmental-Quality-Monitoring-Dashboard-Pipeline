@@ -1,5 +1,5 @@
 """
-Example usage: python extraction.py --locations_file_path ../locations.json --start_date 2024-01 --end_date 2025-01 --database_path ../air_quality.db --extract_query_template_path ../sql/dml/raw/0_raw_air_quality_insert.sql --source_base_path s3://openaq-data-archive/records/csv.gz
+Example usage: python extraction.py --locations_file_path ../locations.json --start_date 2024-01 --end_date 2024-03 --database_path ../air_quality.db --extract_query_template_path ../sql/dml/raw/0_raw_air_quality_insert.sql --source_base_path s3://openaq-data-archive/records/csv.gz
 """
 import argparse
 import json
