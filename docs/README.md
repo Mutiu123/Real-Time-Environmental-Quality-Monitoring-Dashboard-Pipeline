@@ -28,7 +28,7 @@ Operational workflows and step-by-step processes
 ### 3. **ARCHITECTURE_EXPLANATION.md** (Detailed Guide)
 In-depth explanation of architectural decisions and justifications
 - Problem statement and solution overview
-- Technology stack justification (why we chose each tool)
+- Technology stack justification (why I chose each tool)
 - Architecture deep dive with reasoning
 - Data pipeline step-by-step explanation
 - Dashboard design philosophy
@@ -37,6 +37,33 @@ In-depth explanation of architectural decisions and justifications
 - Production deployment guidance
 
 **Best for**: Understanding the "why" behind every decision, presentations, and technical discussions
+
+### 4. **PROJECT_BUILD_GUIDE.md** (Complete Build Tutorial)
+Step-by-step guide to recreate the entire project from scratch
+- Phase 1: Project setup & foundation
+- Phase 2: Database layer creation
+- Phase 3: Data extraction pipeline
+- Phase 4: Data transformation
+- Phase 5: Dashboard development
+- Phase 6: Incremental loading implementation
+- Phase 7: Dashboard enhancements
+- Phase 8: Documentation
+- Phase 9: Testing & verification
+
+**Best for**: Rebuilding the project from scratch, learning the development process, future reference
+
+### 5. **PROJECT_SUMMARY.md** (Complete Reference)
+Comprehensive project summary with all details
+- Executive summary
+- Technical architecture
+- Core features explained
+- Project structure
+- Implementation guide
+- Design decisions & trade-offs
+- Performance metrics
+- Troubleshooting guide
+
+**Best for**: Quick reference, project overview, documentation for stakeholders
 
 ---
 
@@ -117,7 +144,12 @@ SELECT COUNT(*) FROM raw.air_quality;
 **For Presentations/Documentation**:
 1. [ARCHITECTURE_EXPLANATION.md](ARCHITECTURE_EXPLANATION.md) - Your script and speaking notes
 2. [PROJECT_ARCHITECTURE.md](PROJECT_ARCHITECTURE.md) - Visual aids
-3. [WORKFLOW_DIAGRAMS.md](WORKFLOW_DIAGRAMS.md) - Operational details
+3. [PROJECT_SUMMARY.md](PROJECT_SUMMARY.md) - Complete reference
+
+**For Rebuilding from Scratch**:
+1. [PROJECT_BUILD_GUIDE.md](PROJECT_BUILD_GUIDE.md) - Complete step-by-step guide
+2. Follow each phase sequentially
+3. Use [PROJECT_SUMMARY.md](PROJECT_SUMMARY.md) for quick reference
 
 ---
 
